@@ -13,15 +13,10 @@ const Home = () => {
   const [isSelected, setIsSelected] = useState<Boolean>(false);
   return (
     <View style={styles.homeContainer}>
-      <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-        <FontAwesome5
-          // style={{transform: [{rotateY: '100deg'}]}}
-          name="minus"
-          size={15}
-          color="#adadad"
-        />
-        <Text style={{color: 'white'}}>Explore</Text>
-      </View>
+      <Text style={{color: 'white', fontSize: 20, marginBottom: 20}}>
+        Explore
+      </Text>
+
       <FlatList
         data={RawData}
         renderItem={({item, index}) => (
@@ -70,7 +65,7 @@ const Home = () => {
               style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end'}}>
               <AntDesign name="clockcircle" size={15} color="#adadad" />
               <Text style={{color: 'white', marginLeft: 4}}>
-                {moment(item?.date_time).format('DD/MM/YYYY hh:mm')} AM
+                {moment(item?.date_time).format('DD/MM/YYYY LT')}
               </Text>
             </View>
           </View>
@@ -85,7 +80,6 @@ export default Home;
 const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
-    height: 280,
     backgroundColor: '#0D2A3F',
     padding: 10,
   },
@@ -93,7 +87,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     elevation: 5,
     padding: 10,
-    backgroundColor: '#3d6a8a',
+    backgroundColor: '#334B5F',
     marginBottom: 5,
     marginTop: 5,
     height: 130,

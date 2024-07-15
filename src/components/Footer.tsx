@@ -4,35 +4,22 @@ import {useNavigation} from '@react-navigation/native';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import CommonStyle from '../CommonStyle';
+
 const Footer = (props: any) => {
   console.log(props, 'foot props');
   const navigation: any = useNavigation();
   return (
     <View style={styles.footer}>
-      <FontAwesome
-        //   style={{color: isDark ? 'white' : 'black'}}
-        name="align-justify"
-        size={18}
-        color="black"
-        onPress={() => navigation.navigate('home')}
-      />
+      <TouchableOpacity onPress={() => navigation.navigate('home')}>
+        <FontAwesome name="align-justify" size={18} color="white" />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('todoCreate')}>
+        <Feather name="edit-3" size={18} color="white" />
+      </TouchableOpacity>
 
-      <Feather
-        //   style={{color: isDark ? 'white' : 'black'}}
-        name="edit-3"
-        size={18}
-        color="black"
-        onPress={() => navigation.navigate('todoCreate')}
-      />
-
-      <MaterialCommunityIcons
-        //   style={{color: isDark ? 'white' : 'black'}}
-        name="circle-double"
-        size={18}
-        color="black"
-        onPress={() => navigation.navigate('todoList')}
-      />
+      <TouchableOpacity onPress={() => navigation.navigate('todoList')}>
+        <MaterialCommunityIcons name="circle-double" size={18} color="white" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -51,5 +38,10 @@ const styles = StyleSheet.create({
     elevation: 7,
     alignItems: 'center',
     bottom: 0,
+  },
+
+  btn: {
+    height: 50,
+    width: 50,
   },
 });
