@@ -8,12 +8,10 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {AuthContext} from '../../App';
-import moment from 'moment';
 
 const TodoCreate = ({route}: any) => {
-  // console.log(route.name, 'route.name TodoCreate');
   const {store, setStore} = useContext(AuthContext);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -29,9 +27,7 @@ const TodoCreate = ({route}: any) => {
     setDescription('');
     setStore({...store, todo: []});
   };
-  useEffect(() => {
-    console.log(store, 'store');
-  }, [store]);
+
   return (
     <View style={styles.homeContainer}>
       <ScrollView>

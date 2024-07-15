@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -19,12 +19,6 @@ const Routes = () => {
         <stack.Navigator
           screenOptions={{
             headerShown: false,
-            // headerShadowVisible: false,
-            // headerTintColor: 'white',
-            // headerStyle: {
-            //   backgroundColor: '#0D2A3F',
-            // },
-            // headerLeft: () => <></>,
           }}
           initialRouteName="home">
           <stack.Screen name="home" component={Home} />
@@ -38,5 +32,3 @@ const Routes = () => {
 };
 
 export default Routes;
-
-const styles = StyleSheet.create({});

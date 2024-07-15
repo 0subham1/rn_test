@@ -1,5 +1,5 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {AuthContext} from '../../App';
 import moment from 'moment';
 
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     height: 70,
+    borderColor: '#8E90A3',
   },
 
   head: {

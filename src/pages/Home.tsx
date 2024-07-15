@@ -1,22 +1,12 @@
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  BackHandler,
-  Alert,
-} from 'react-native';
-import React, {useContext, useEffect, useState} from 'react';
+import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import React, {useContext, useState} from 'react';
 import {AuthContext} from '../../App';
 import {RawData} from '../rawData';
+import moment from 'moment';
 import CheckBox from 'react-native-check-box';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import moment from 'moment';
 
 const Home = () => {
-  const {store, setStore} = useContext(AuthContext);
   const [profileData, setProfileData] = useState<any>(RawData);
 
   const handleCheck = (item: any, index: any) => {
@@ -26,34 +16,13 @@ const Home = () => {
     setProfileData(arr);
   };
 
-  useEffect(() => {
-    const backAction = () => {
-      console.log(BackHandler, 'BackHandler');
-      Alert.alert('Hold on!', 'Are you sure you want to go back?', [
-        {
-          text: 'Cancel',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {text: 'YES', onPress: () => BackHandler.exitApp()},
-      ]);
-      return true;
-    };
-
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    );
-
-    return () => backHandler.remove();
-  }, []);
   return (
     <View style={styles.homeContainer}>
       <Text style={styles.head}>Explore</Text>
 
       <FlatList
         data={RawData}
-        renderItem={({item, index}) => (
+        renderItem={({item, index}: any) => (
           <View style={styles.card} key={index}>
             <View style={styles.cardContent}>
               <View
