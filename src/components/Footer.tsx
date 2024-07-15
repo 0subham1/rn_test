@@ -9,7 +9,7 @@ const Footer = (props: any) => {
   console.log(props, 'foot props');
   const navigation: any = useNavigation();
   return (
-    <View style={[styles.footer, CommonStyle.flexRowSpaceBtwn]}>
+    <View style={styles.footer}>
       <FontAwesome
         //   style={{color: isDark ? 'white' : 'black'}}
         name="align-justify"
@@ -41,17 +41,15 @@ export default Footer;
 
 const styles = StyleSheet.create({
   footer: {
-    // flex: 1,
-    // flexDirection: 'row',
-    // alignItems: 'center',
-    // justifyContent: 'space-between',
-
-    padding: 10,
-    // bottom: 0,
-    // height: '10%',
-    // width: '100%',
+    display: 'flex',
+    padding: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    height: 50,
     backgroundColor: '#51C833',
-    // borderBlockColor: 'red',
-    // borderWidth: 2,
+    elevation: 7,
+    alignItems: 'center',
+    bottom: 0,
   },
 });
