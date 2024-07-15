@@ -11,6 +11,23 @@ import moment from 'moment';
 const Home = () => {
   const {store, setStore} = useContext(AuthContext);
   const [isSelected, setIsSelected] = useState<Boolean>(false);
+  const [profileData, setProfileData] = useState<any>(RawData);
+
+  const handleCheck = (item, index) => {
+    console.log(item, 'itemm');
+    console.log(index, 'index');
+
+    let arr = [...profileData];
+    if (arr[index].isSelected) {
+      arr[index].isSelected = false;
+    } else {
+      arr[index].isSelected = true;
+    }
+
+    setProfileData(arr);
+  };
+
+  console.log(profileData, 'prof');
   return (
     <View style={styles.homeContainer}>
       <Text style={{color: 'white', fontSize: 20, marginBottom: 20}}>
@@ -49,8 +66,8 @@ const Home = () => {
               </View>
 
               <CheckBox
-                isChecked={isSelected}
-                onClick={() => setIsSelected(!isSelected)}
+                isChecked={item?.isSelected}
+                onClick={() => handleCheck(item, index)}
                 checkBoxColor="white"
               />
             </View>
