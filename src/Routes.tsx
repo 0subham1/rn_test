@@ -17,7 +17,15 @@ const Routes = () => {
       <NavigationContainer>
         <Header />
         <stack.Navigator
-          screenOptions={{headerShown: false}}
+          screenOptions={{
+            headerShown: false,
+            // headerShadowVisible: false,
+            // headerTintColor: 'white',
+            // headerStyle: {
+            //   backgroundColor: '#0D2A3F',
+            // },
+            // headerLeft: () => <></>,
+          }}
           initialRouteName="home">
           <stack.Screen name="home" component={Home} />
           <stack.Screen name="todoCreate" component={TodoCreate} />

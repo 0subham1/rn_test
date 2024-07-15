@@ -7,9 +7,7 @@ const TodoList = ({route}: any) => {
   const {store, setStore} = useContext(AuthContext);
   return (
     <View style={styles.homeContainer}>
-      <Text style={{color: 'white', fontSize: 20, marginBottom: 20}}>
-        Todo's
-      </Text>
+      <Text style={styles.head}>Todo's</Text>
 
       {store?.todo?.length > 0 ? (
         <FlatList
@@ -54,5 +52,16 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     height: 70,
+  },
+
+  head: {
+    color: 'white',
+    fontSize: 20,
+    marginBottom: 20,
+    borderLeftWidth: 5,
+    borderLeftColor: '#51C833',
+    borderTopLeftRadius: 3,
+    borderBottomLeftRadius: 3,
+    paddingLeft: 12,
   },
 });

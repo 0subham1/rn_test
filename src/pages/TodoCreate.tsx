@@ -35,9 +35,7 @@ const TodoCreate = ({route}: any) => {
   return (
     <View style={styles.homeContainer}>
       <ScrollView>
-        <Text
-          style={{color: 'white', fontSize: 20, marginBottom: 20}}
-          onPress={() => handleClear()}>
+        <Text style={styles.head} onPress={() => handleClear()}>
           Add Todo's
         </Text>
         <KeyboardAvoidingView>
@@ -96,5 +94,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     justifyContent: 'space-between',
     display: 'flex',
+  },
+  head: {
+    color: 'white',
+    fontSize: 20,
+    marginBottom: 25,
+    borderLeftWidth: 5,
+    borderLeftColor: '#51C833',
+    borderTopLeftRadius: 3,
+    borderBottomLeftRadius: 3,
+    paddingLeft: 12,
   },
 });
