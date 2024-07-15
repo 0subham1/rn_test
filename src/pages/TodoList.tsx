@@ -1,14 +1,15 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const TodoCreate = () => {
+const TodoList = ({route}: any) => {
+  console.log(route.name, 'route.name TodoList');
   return (
     <View>
-      <Text>TodoCreate</Text>
+      <Text>TodoList</Text>
     </View>
   );
 };
 
-export default TodoCreate;
+export default TodoList;
 
 const styles = StyleSheet.create({});
