@@ -1,13 +1,27 @@
 import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
-import React, {useContext, useState} from 'react';
-import {AuthContext} from '../../App';
-import {RawData} from '../rawData';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import moment from 'moment';
 import CheckBox from 'react-native-check-box';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Home = () => {
-  const [profileData, setProfileData] = useState<any>(RawData);
+  const [profileData, setProfileData] = useState<any>([]);
+
+  useEffect(() => {
+    handleGetProfileData();
+  }, []);
+  const handleGetProfileData = () => {
+    let url = 'https://unikwork.com/instagram/api/get_data.php';
+    axios
+      .get(url)
+      .then(res => {
+        setProfileData(res?.data);
+      })
+      .catch(err => {
+        console.log(err, 'err');
+      });
+  };
 
   const handleCheck = (item: any, index: any) => {
     let arr = [...profileData];
@@ -19,61 +33,64 @@ const Home = () => {
   return (
     <View style={styles.homeContainer}>
       <Text style={styles.head}>Explore</Text>
-
-      <FlatList
-        data={RawData}
-        renderItem={({item, index}: any) => (
-          <View style={styles.card} key={index}>
-            <View style={styles.cardContent}>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <Image
-                  src={item?.user?.profile}
+      {profileData?.length > 0 ? (
+        <FlatList
+          data={profileData}
+          renderItem={({item, index}: any) => (
+            <View style={styles.card} key={index}>
+              <View style={styles.cardContent}>
+                <View
                   style={{
-                    height: 40,
-                    width: 40,
-                    marginRight: 8,
-                    borderRadius: 8,
-                  }}
-                />
-                <View>
-                  <Text style={{color: 'white', fontSize: 17}}>
-                    {item?.user?.name}
-                  </Text>
+                    flex: 1,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}>
+                  <Image
+                    src={item?.user?.profile}
+                    style={{
+                      height: 40,
+                      width: 40,
+                      marginRight: 8,
+                      borderRadius: 8,
+                    }}
+                  />
+                  <View>
+                    <Text style={{color: 'white', fontSize: 17}}>
+                      {item?.user?.name}
+                    </Text>
 
-                  <Text style={{color: 'white', fontSize: 13}}>
-                    {item?.user?.name + '@example.com'}
-                  </Text>
+                    <Text style={{color: 'white', fontSize: 13}}>
+                      {item?.user?.name + '@example.com'}
+                    </Text>
+                  </View>
                 </View>
+
+                <CheckBox
+                  isChecked={item?.isSelected}
+                  onClick={() => handleCheck(item, index)}
+                  checkBoxColor="white"
+                />
               </View>
 
-              <CheckBox
-                isChecked={item?.isSelected}
-                onClick={() => handleCheck(item, index)}
-                checkBoxColor="white"
-              />
+              <View>
+                <Text style={{fontSize: 10, color: 'white'}}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor
+                </Text>
+              </View>
+              <View
+                style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end'}}>
+                <AntDesign name="clockcircle" size={15} color="#adadad" />
+                <Text style={{color: 'white', marginLeft: 4}}>
+                  {moment(item?.date_time).format('DD/MM/YYYY LT')}
+                </Text>
+              </View>
             </View>
-
-            <View>
-              <Text style={{fontSize: 10, color: 'white'}}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor
-              </Text>
-            </View>
-            <View
-              style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end'}}>
-              <AntDesign name="clockcircle" size={15} color="#adadad" />
-              <Text style={{color: 'white', marginLeft: 4}}>
-                {moment(item?.date_time).format('DD/MM/YYYY LT')}
-              </Text>
-            </View>
-          </View>
-        )}
-      />
+          )}
+        />
+      ) : (
+        <Text style={{fontSize: 20, color: 'white'}}>Data loading...</Text>
+      )}
     </View>
   );
 };
