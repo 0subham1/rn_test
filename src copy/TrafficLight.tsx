@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Road from './Road';
+import Road from '../src/components/Road';
 
 const TrafficLight = () => {
   return (

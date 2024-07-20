@@ -6,7 +6,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Home from './pages/Home';
 
 import Footer from './components/Footer';
-import Header from './components/Header';
+
 import Config from './pages/Config';
 
 const stack = createNativeStackNavigator();
@@ -14,7 +14,6 @@ const Routes = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        {/* <Header /> */}
         <stack.Navigator
           screenOptions={{
             headerShown: false,

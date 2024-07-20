@@ -1,12 +1,14 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import TrafficLight from '../components/TrafficLight';
+import TrafficLight from '../../src copy/TrafficLight';
+import Road from '../components/Road';
 
 const Home = () => {
   return (
     <View style={styles.containerHome}>
       <Text style={{fontSize: 20}}>Traffic Stimulation</Text>
-      <TrafficLight />
+      {/* <TrafficLight /> */}
+      <Road />
     </View>
   );
 };

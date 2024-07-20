@@ -1,37 +1,39 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {AuthContext} from '../../App';
-import {useNavigation} from '@react-navigation/native';
 
 const Road = () => {
   const {store, setStore} = useContext(AuthContext);
-  const navigation: any = useNavigation();
+
   const [isHorizontal, setIsHorizontal] = useState(true);
   const [isVertical, setIsVertical] = useState(false);
 
+  let interval;
+
   useEffect(() => {
-    const interval = setTimeout(() => {
+    interval = setTimeout(() => {
       if (store?.ambulanceLane) {
         setIsHorizontal(false);
         setIsVertical(false);
-        setTimeout(() => {
+        let interval2 = setTimeout(() => {
           setStore({...store, ambulanceLane: null});
         }, 5000);
+        return () => clearInterval(interval2);
       } else {
         setIsHorizontal(!isHorizontal);
         setIsVertical(isHorizontal);
       }
     }, Number(store?.timeDuration));
-
-    return () => clearInterval(interval);
-  }, [store]);
+    //   return () => clearInterval(interval);
+  }, []);
 
   //   console.log(isHorizontal, 'isHor');
   //   console.log(isVertical, 'isVer');
 
   return (
     <View style={styles.roadContainer}>
+      <Button title="clear" onPress={() => clearInterval(interval)}></Button>
       <View
         style={[
           styles.roadA,
